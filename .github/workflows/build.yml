@@ -27,7 +27,7 @@ jobs:
         run: |
           xcodebuild clean archive -workspace SampleApp.xcworkspace -scheme SampleApp -archivePath build/SampleApp.xcarchive
 
-      - name: Export Archive as IPA
+      - name: Export Archive as IPAA
         run: |
           xcodebuild -exportArchive -archivePath build/SampleApp.xcarchive -exportPath build -exportOptionsPlist ExportOptions.plist
 
