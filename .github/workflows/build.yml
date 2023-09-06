@@ -2,8 +2,8 @@ name: iOS TestFlight Build
 
 on:
   push:
-    paths:
-      - .github/workflows/build.yml  # Change this to the branch you want to trigger the build from
+    branches:
+      - main  # Change this to the branch you want to trigger the build from
 
 jobs:
   build:
