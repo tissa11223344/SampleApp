@@ -14,9 +14,9 @@
     <key>provisioningProfiles</key>
     <dict>
         <key>com.tissatech.SampleApp</key>
-        <string>69cf8e2a-7bc5-4f69-941d-5868a667009e</string>
+        <string>6d743b32-9a9d-4dc2-9072-602116a08411</string>
     </dict>
     <key>signingCertificate</key>
-    <string>Apple Development</string>
+    <string>iPhone Distribution</string>
 </dict>
 </plist>
