@@ -7,7 +7,6 @@ target 'SampleApp' do
 
   # Pods for SampleApp
   
-  pod 'Alamofire'
 
   target 'SampleAppTests' do
     inherit! :search_paths

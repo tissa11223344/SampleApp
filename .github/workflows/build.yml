@@ -3,7 +3,7 @@ name: iOS TestFlight Build
 on:
   push:
     paths:
-      - .github/workflows/build.yml  # Change this to the branch you want to trigger the build from
+      - .github/workflows/build.yml
 
 jobs:
   build:
@@ -13,28 +13,40 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-#      - name: Set up Xcode
-#        uses: actions/setup-xcode@v2
-#        with:
-#          xcode-version: '13' # Use the desired Xcode version, e.g., '13'
-#          scheme: 'SampleApp' # Specify your Xcode scheme here
-
       - name: Install CocoaPods
         run: |
           gem install cocoapods
           pod install
 
-      - name: Build and archive
+#      - name: Set up Xcode
+#        uses: actions/setup-xcode@v2
+#        with:
+#          xcode-version: '13'  # Use the desired Xcode version
+
+      - name: Import Code Signing Certificate
+        run: |
+          echo $P12_CERTIFICATE | base64 -d > Certificates.p12
+          security create-keychain -p "" build.keychain
+          security import Certificates.p12 -k ~/Library/Keychains/build.keychain -P $P12_PASSWORD
+          security list-keychains -s ~/Library/Keychains/build.keychain
+          security default-keychain -s ~/Library/Keychains/build.keychain
+          security unlock-keychain -p "" ~/Library/Keychains/build.keychain
+
+      - name: Import Provisioning Profile
+        run: echo "$PROVISIONING_PROFILE" > SampleApp.mobileprovision
+
+      - name: Build and Archive
         run: |
           xcodebuild clean archive -workspace SampleApp.xcworkspace -scheme SampleApp -archivePath build/SampleApp.xcarchive
 
-      - name: Export archive as IPA
+      - name: Export Archive as IPA
         run: |
           xcodebuild -exportArchive -archivePath build/SampleApp.xcarchive -exportPath build -exportOptionsPlist ExportOptions.plist
 
       - name: Upload to TestFlight
         run: |
           xcrun altool --upload-app -t ios -f build/SampleApp.ipa -u ${{ secrets.APPSTORE_USERNAME }} -p ${{ secrets.APPSTORE_PASSWORD }}
+
 
 
 
