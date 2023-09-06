@@ -10,7 +10,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout codee
         uses: actions/checkout@v2
 
       - name: Set up Xcode
