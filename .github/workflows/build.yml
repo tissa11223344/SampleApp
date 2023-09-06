@@ -8,15 +8,11 @@ on:
 
       - .github/workflows/build.yml
 
- 
-
 jobs:
 
   build:
 
     runs-on: macos-latest
-
- 
 
     steps:
 
@@ -64,9 +60,7 @@ jobs:
 
           TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
 
- 
-
-      - name: Upload IPA
+      - name: Upload IPAA
 
         id: upload_ipa
 
