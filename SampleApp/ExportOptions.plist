@@ -16,6 +16,8 @@
         <key>com.tissatech.SampleApp</key>
         <string>6d743b32-9a9d-4dc2-9072-602116a08411</string>
     </dict>
+    <key>teamID</key>
+        <string>8H4VCQCSWU</string>
     <key>signingCertificate</key>
     <string>iPhone Distribution</string>
 </dict>

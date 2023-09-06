@@ -60,7 +60,7 @@ jobs:
 
           TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
 
-      - name: Upload IPAA
+      - name: Upload IPA
 
         id: upload_ipa
 
