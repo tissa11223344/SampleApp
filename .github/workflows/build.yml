@@ -10,13 +10,14 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout codee
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Xcode
         uses: actions/setup-xcode@v2
         with:
-          xcode-version: 14.3 # Use the desired Xcode version
+          xcode-version: '13' # Use the desired Xcode version, e.g., '13'
+          scheme: 'SampleApp' # Specify your Xcode scheme here
 
       - name: Install CocoaPods
         run: |
