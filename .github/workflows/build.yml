@@ -32,6 +32,7 @@ jobs:
           security default-keychain -s ~/Library/Keychains/build.keychain
           security unlock-keychain -p "" ~/Library/Keychains/build.keychain
 
+
       - name: Import Provisioning Profile
         run: echo "$PROVISIONING_PROFILE" > SampleApp.mobileprovision
 
