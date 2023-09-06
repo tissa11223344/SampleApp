@@ -13,11 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Xcode
-        uses: actions/setup-xcode@v2
-        with:
-          xcode-version: '13' # Use the desired Xcode version, e.g., '13'
-          scheme: 'SampleApp' # Specify your Xcode scheme here
+#      - name: Set up Xcode
+#        uses: actions/setup-xcode@v2
+#        with:
+#          xcode-version: '13' # Use the desired Xcode version, e.g., '13'
+#          scheme: 'SampleApp' # Specify your Xcode scheme here
 
       - name: Install CocoaPods
         run: |
@@ -35,3 +35,127 @@ jobs:
       - name: Upload to TestFlight
         run: |
           xcrun altool --upload-app -t ios -f build/SampleApp.ipa -u ${{ secrets.APPSTORE_USERNAME }} -p ${{ secrets.APPSTORE_PASSWORD }}
+
+
+
+#name: Build and Deploy IPA
+#
+#on:
+#
+#  push:
+#
+#    paths:
+#
+#      - .github/workflows/build.yml
+#
+#
+#
+#jobs:
+#
+#  build:
+#
+#    runs-on: macos-latest
+#
+#
+#
+#    steps:
+#
+#      - name: Checkout code
+#
+#        uses: actions/checkout@v2
+#
+#
+#
+#      # - name: Set up Xcode
+#
+#      #   uses: actions/setup-xcode@v2
+#
+#      #   with:
+#
+#      #     xcode-version: '14.3'  # Adjust to your desired Xcode version
+#
+#
+#
+#      - name: List Directory Contents
+#
+#        run: ls -R
+#
+#
+#
+#      # - name: Export IPA
+#
+#      #   run: xcodebuild -exportArchive -archivePath build/AutomationTemplateCICD.xcarchive -exportPath build -exportOptionsPlist ExportOptions.plist
+#
+#      # - name: Archieve IPA
+#
+#      #   run: xcodebuild -workspace <AutomationTemplateCICD>/<AutomationTemplateCICD>.xcworkspace \-scheme <AutomationTemplateCICD> clean archive -configuration release \ -sdk iphoneos -archivePath <AutomationTemplateCICD>.xcarchive
+#
+#
+#
+#      - name: Build IPAA
+#
+#        run: xcodebuild -workspace AutomationTemplateCICD.xcworkspace -scheme AutomationTemplateCICD -configuration Release clean archive -archivePath /Users/sayalitembhurne/Library/Developer/Xcode/Archives/$DATE/AutomationTemplateCICD.xcarchive CODE_SIGNING_ALLOWED=NO
+#
+#
+#
+#      - name: Export IPAA
+#
+#        # run: xcodebuild -exportArchive -archivePath AutomationTemplateCICD.xcarchive  AutomationTemplateCICD \-exportPath AutomationTemplateCICD.ipa
+#
+#        run: xcodebuild -exportArchive -archivePath /Users/sayalitembhurne/Library/Developer/Xcode/Archives/$DATE/AutomationTemplateCICD.xcarchive -exportPath build -exportOptionsPlist AutomationTemplateCICD/ExportOptions.plist -allowProvisioningUpdates
+#
+#
+#
+#
+#
+#      - name: Set up Git
+#
+#        run: |
+#
+#          git config --global user.name "sayali0987"
+#
+#          git config --global user.email "sayali.tembhurne@tissatech.com"
+#
+#
+#
+#      - name: Create Release
+#
+#        id: create_release
+#
+#        uses: actions/create-release@v1
+#
+#        with:
+#
+#          tag_name: v1.3.1  # Replace with your desired tag name
+#
+#          release_name: Release v1.3.1  # Replace with your desired release name
+#
+#          draft: false
+#
+#          prerelease: false
+#
+#        env:
+#
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#
+#
+#
+#      - name: Upload IPA
+#
+#        id: upload_ipa
+#
+#        uses: actions/upload-release-asset@v1
+#
+#        with:
+#
+#          upload_url: ${{ steps.create_release.outputs.upload_url }}
+#
+#          asset_path: build/AutomationTemplateCICD.ipa
+#
+#          asset_name: AutomationTemplateCICD.ipa
+#
+#          asset_content_type: application/octet-stream
+#
+#        env:
+#
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
