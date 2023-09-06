@@ -10,7 +10,7 @@
 <plist version="1.0">
 <dict>
     <key>method</key>
-    <string>appstore</string>
+    <string>app-store</string>
     <key>provisioningProfiles</key>
     <dict>
         <key>com.tissatech.SampleApp</key>
