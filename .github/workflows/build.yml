@@ -24,7 +24,7 @@ jobs:
 
         run: ls -R
 
-      - name: Build IPA
+      - name: Build IPAA
 
         run: xcodebuild -workspace SampleApp.xcworkspace -scheme SampleApp -configuration Release clean archive -archivePath SampleApp.xcarchive CODE_SIGNING_ALLOWED=NO
 
